@@ -12,14 +12,12 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(AutoAttack.MODID)
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = AutoAttack.MODID)
 public class AutoAttack
 {
     static final String MODID = "autoattack";
 
-//    private static boolean isAutoAttack = true;
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Minecraft mc = Minecraft.getInstance();
 
@@ -28,7 +26,7 @@ public class AutoAttack
     {
         if (event.phase == TickEvent.Phase.END &&
             mc.player != null &&
-            mc.player.getAttackStrengthScale(0.0F) >= 1.0F)
+            mc.player.getAttackStrengthScale(0.0F) == 1.0F)
         {
             Vec3 start = mc.player.getEyePosition();
             Vec3 addition = mc.player.getLookAngle().multiply(2.7D, 2.7D, 2.7D);
