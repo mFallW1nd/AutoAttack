@@ -28,24 +28,22 @@ public class AutoAttack
     {
         if (event.phase == TickEvent.Phase.END &&
             mc.player != null &&
-            mc.player.getAttackStrengthScale(0.0F) >= 0.8F)
+            mc.player.getAttackStrengthScale(0.0F) >= 1.0F)
         {
-            Vec3 start = mc.player.eye;
-            Vec3 addition = mc.player.getLookAngle().multiply(2.5D, 2.5D, 2.5D);
+            Vec3 start = mc.player.getEyePosition();
+            Vec3 addition = mc.player.getLookAngle().multiply(2.7D, 2.7D, 2.7D);
 
             EntityHitResult er_mob = ProjectileUtil.getEntityHitResult(
                     mc.player.level,
                     mc.player,
                     start,
                     start.add(addition),
-                    mc.player.getBoundingBox().expandTowards(addition).inflate(2.5D),
+                    mc.player.getBoundingBox().expandTowards(addition).inflate(2.7D),
                     (val) -> true
             );
 
             if (er_mob != null)
             {
-                Vec3 mob_pos = er_mob.getEntity().getPosition(1.0F);
-                mc.player.
                 KeyMapping.click(Minecraft.getInstance().options.keyAttack.getKey());
             }
         }
